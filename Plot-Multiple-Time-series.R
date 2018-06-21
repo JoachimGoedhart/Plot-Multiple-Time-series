@@ -7,11 +7,12 @@
 # Created by: 
 # Joachim Goedhart, @joachimgoedhart, 2018
 
-#Requires the packages tidyr, ggplot2, dplyr
+#Requires the packages tidyr, ggplot2, dplyr, magrittr
 
 require(tidyr)
 require(ggplot2)
 require(dplyr)
+require(magrittr)
 
 ######################## Set some parameters #########################
 #Confidence level, typically 95% = 0.95
@@ -40,8 +41,6 @@ df_tidy <- unite(df_tidy, unique_id, c(Condition, Cell), sep = "_", remove = FAL
 
 
 ######### Calulcate summary statistics to fill dataframe 'df_summary' ########
-
-require(magrittr)
 
 df_tidy_mean <- df_tidy %>%
 				filter(!is.na(Ratio)) %>%
@@ -80,7 +79,7 @@ df_tidy_mean <- df_tidy %>%
 
 ## Set the Y-axis scale, remove for autoscale
 
-  coord_cartesian(ylim = c(0.94, 1.24)) +	coord_cartesian(xlim = c(0.0, 10)) +
+  coord_cartesian(ylim = c(0.94, 1.24)) + coord_cartesian(xlim = c(0.0, 10)) +
   
 ## Set theme&basic font
 	theme_light(base_size = 16) +
